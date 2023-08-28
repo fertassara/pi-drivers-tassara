@@ -11,6 +11,11 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
   logging: false, 
   native: false, 
 });
+
+sequelize.authenticate()
+.then( () => console.log('Connection has been established successfully.'))
+.catch(err => {console.error('Unable to connect to the database:'); });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -27,9 +32,10 @@ modelDefiners.forEach(model => model(sequelize));
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
+const { Driver , Team } = sequelize.models;
 
-const { Driver } = sequelize.models;
-
+Driver.belongsToMany(Team, { through: 'Driver_Team' });
+Team.belongsToMany(Driver, { through: 'Driver_Team' });
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
