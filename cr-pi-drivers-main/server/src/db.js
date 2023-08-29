@@ -4,18 +4,19 @@ const { Sequelize } = require("sequelize");
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST, //oculto credenciales al subir al github
 } = process.env;
 
+//conecto las credenciales a la base de datos
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/drivers`, {
   logging: false, 
-  native: false, 
+  native: false,  
 });
 
+//manejo el error en caso que no conecte
 sequelize.authenticate()
 .then( () => console.log('Connection has been established successfully.'))
-.catch(err => {console.error('Unable to connect to the database:'); });
-
+.catch(err => {console.error('Unable to connect to the database:'); }); 
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -32,6 +33,7 @@ modelDefiners.forEach(model => model(sequelize));
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
+
 const { Driver , Team } = sequelize.models;
 
 Driver.belongsToMany(Team, { through: 'Driver_Team' });

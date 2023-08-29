@@ -1,4 +1,3 @@
-require('dotenv').config();
 const { DataTypes } = require('sequelize');
 const path = require('path');
 // Exportamos una funcion que define el modelo
@@ -6,7 +5,7 @@ const path = require('path');
 
 module.exports = (sequelize) => {
   // defino el modelo
-  const Driver = sequelize.define('Driver', {
+  sequelize.define('Driver', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -44,4 +43,5 @@ module.exports = (sequelize) => {
   {
     timestamps: false,
   });
+
 };

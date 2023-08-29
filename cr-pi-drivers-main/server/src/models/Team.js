@@ -6,7 +6,7 @@ const path = require('path');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Team', {
+ sequelize.define('Team', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -23,4 +23,6 @@ module.exports = (sequelize) => {
   {
     timestamps: false,
   });
+
+
 };

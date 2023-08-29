@@ -1,5 +1,14 @@
-const { Router } = require("express");
+const express = require('express');
+const app = express();
+const { conn } = require('../db');
+const routerDriver = require('./routerDriver');
+const routerTeam = require('./routerTeam');
 
-const router = Router();
+app.use(express.json());
 
-module.exports = router;
+app.use('/driver', routerDriver);
+app.use('/team', routerTeam);
+
+
+
+  module.exports = app;
