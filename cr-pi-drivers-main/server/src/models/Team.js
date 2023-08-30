@@ -1,5 +1,5 @@
-const { DataTypes, Sequelize } = require('sequelize');
-const path = require('path');
+const { DataTypes} = require('sequelize');
+
 
 
 // Exportamos una funcion que define el modelo

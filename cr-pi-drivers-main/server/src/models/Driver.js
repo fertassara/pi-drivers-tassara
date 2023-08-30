@@ -3,7 +3,7 @@ const path = require('path');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 
-module.exports = (sequelize) => {
+module.exports = (sequelize) => {  //crea las tablas de la base de datos en pgAdmin
   // defino el modelo
   sequelize.define('Driver', {
     id: {
@@ -12,8 +12,9 @@ module.exports = (sequelize) => {
       autoIncrement: true,
     },
     name: {
-      type: DataTypes.STRING, // Si quieres agregar el campo "name"
+      type: DataTypes.STRING,
       allowNull: false,
+    
     },
     firstName: {
       type: DataTypes.STRING,

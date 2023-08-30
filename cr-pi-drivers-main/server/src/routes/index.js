@@ -6,8 +6,10 @@ const routerTeam = require('./routerTeam');
 
 app.use(express.json());
 
-app.use('/driver', routerDriver);
-app.use('/team', routerTeam);
+app.use('/drivers', routerDriver);
+app.use('/teams', routerTeam);
+
+
 
 
 
