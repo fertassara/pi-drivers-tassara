@@ -1,11 +1,8 @@
 const express = require('express');
-const axios = require('axios');
-const Team = require('../models/Team');
 const router = express.Router();
-const { getTeams } = require ('../controllers/getTeams')
+const { getTeamsAndSaveToDatabase } = require('../controllers/getTeams'); // Importa el controlador correcto
 
-
-router.get('/teams', getTeams);
-
+router.get('/teams', getTeamsAndSaveToDatabase); // Asigna el controlador a la ruta
 
 module.exports = router;
+    

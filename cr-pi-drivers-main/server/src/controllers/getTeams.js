@@ -1,29 +1,32 @@
 const axios = require('axios');
-const { Team } = require('../db');
+const { Team } = require('../models/Team'); // Importa el modelo de equipos de Sequelize
 
-const getTeams = async (req, res) => {
+const getTeamsAndSaveToDatabase = async () => {
   try {
-    // Realiza una solicitud GET a la API
-    const response = await axios.get('http://localhost:5000/drivers');
+    // Verifica si la tabla de equipos está vacía
+    const isEmpty = await Team.count() === 0;
 
-    // Extrae los equipos de la respuesta de la API
-    const teamsFromAPI = response.data.map(driver => driver.team);
+    if (isEmpty) {
+      // Si está vacía, obtén los equipos de la API
+      const response = await axios.get('http://localhost:5000/drivers');
+      const drivers = response.data;
 
-    // Inserta los equipos en la base de datos si no existen
-    await Team.bulkCreate(
-      teamsFromAPI.map(name => ({ name })),
-      { ignoreDuplicates: true }
-    );
+      // Obtener todos los equipos de los conductores
+      const teams = drivers.map(driver => driver.team);
 
-    // Obtiene todos los equipos de la base de datos
-    const teamsFromDB = await Team.findAll();
+      // Eliminar duplicados de la lista de equipos
+      const uniqueTeams = Array.from(new Set(teams));
 
-    // Envía la lista de equipos como respuesta
-    res.json(teamsFromDB);
+      // Guardar los equipos en la base de datos
+      await Team.bulkCreate(uniqueTeams.map(name => ({ name })));
+
+      console.log('Equipos guardados en la base de datos.');
+    } else {
+      console.log('La tabla de equipos ya contiene datos.');
+    }
   } catch (error) {
-    console.error('Error al obtener los equipos:', error.message);
-    res.status(500).json({ error: 'Error al obtener los equipos' });
+    console.error(error);
   }
 };
 
-module.exports = { getTeams };
+module.exports = { getTeamsAndSaveToDatabase };
