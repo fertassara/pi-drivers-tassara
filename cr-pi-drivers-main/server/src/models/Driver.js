@@ -13,16 +13,16 @@ module.exports = (sequelize) => {  //crea las tablas de la base de datos en pgAd
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,  //lO PUSE EN TRUE PARA PODER CREAR EN LA BASE DE DATOS
     
     },
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     description: {
       type: DataTypes.TEXT,
@@ -34,11 +34,11 @@ module.exports = (sequelize) => {  //crea las tablas de la base de datos en pgAd
     },
     nationality: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     birthDate: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {

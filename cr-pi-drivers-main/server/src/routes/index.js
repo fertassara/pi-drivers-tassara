@@ -4,6 +4,7 @@ const { conn } = require('../db');
 const routerDriver = require('./routerDriver');
 const routerTeam = require('./routerTeam');
 
+
 app.use(express.json());
 
 app.use('/drivers', routerDriver);
