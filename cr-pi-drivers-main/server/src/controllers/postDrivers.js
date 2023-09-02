@@ -1,24 +1,51 @@
-const express = require('express');
-const {Driver} = require('../db')
+const { Op } = require('sequelize');
+const { Driver, Team } = require('../db');
 
 const postDrivers = async (req, res) => {
-    const { name, teams, image } = req.body;
-  console.log(name)
-    // CREA IMAGEN POR DEF SI EL USUARIO NO PROPORCIONA UNA
-    const defaultImage = 'https://picsum.photos/700/400?random';
-  
     try {
-      const newDriver = await Driver.create({ name, image: image || defaultImage });
-  
-      if (teams && teams.length > 0) {
-        await newDriver.addTeams(teams);
-      }
-  
-      res.status(201).json(newDriver);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'An error occurred while creating driver' });
-    }
-  };
+        const driverData = req.body;
 
-  module.exports = {postDrivers}
+        // Verificar si 'teams' está presente y es un arreglo
+        if (!Array.isArray(driverData.teams)) {
+            throw new Error("'teams' should be an array");
+        }
+
+        const { name, firstName, lastName, description, image, nationality, birthDate, teams } = driverData;
+
+        // Crear un nuevo conductor en la base de datos
+        const newDriver = await Driver.create({
+            name,
+            firstName,
+            lastName,
+            description,
+            image,
+            nationality,
+            birthDate,
+        });
+
+        // Buscar equipos existentes en la base de datos
+        const existingTeams = await Team.findAll({
+            where: {
+                name: {
+                    [Op.in]: teams,
+                },
+            },
+        });
+
+        // Asociar los equipos existentes al nuevo conductor
+        await newDriver.addTeams(existingTeams);
+
+        // Buscar el conductor recién creado con sus equipos asociados
+        const finalDriver = await Driver.findByPk(newDriver.id, {
+            include: [{ model: Team, attributes: ['id', 'name'] }],
+        });
+
+        res.status(200).json(finalDriver);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+module.exports = {
+    postDrivers,
+};
