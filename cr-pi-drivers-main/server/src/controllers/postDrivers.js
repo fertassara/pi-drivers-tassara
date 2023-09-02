@@ -21,6 +21,7 @@ const postDrivers = async (req, res) => {
             image,
             nationality,
             birthDate,
+            teams,
         });
 
         // Buscar equipos existentes en la base de datos

@@ -1,6 +1,5 @@
 const axios = require('axios');
-const {Driver , Team} = require('../db')
-
+const { Driver, Team } = require('../db');
 
 const getDriversId = async (req, res) => {
   const idDriver = req.params.idDriver;
@@ -11,9 +10,27 @@ const getDriversId = async (req, res) => {
     });
 
     if (apiResponse.data) {
+      // Extraer los campos deseados de la API
+      const {
+        name,
+        firstName,
+        lastName,
+        description,
+        image,
+        nationality,
+        birthDate,
+        teams,
+      } = apiResponse.data;
+
       // Combina la información del conductor de la API y el equipo de la base de datos
       const driverDetails = {
-        ...apiResponse.data,
+        name,
+        firstName,
+        lastName,
+        description,
+        image,
+        nationality,
+        birthDate,
         teams: dbDriver ? dbDriver.Teams : [],
       };
 
@@ -27,4 +44,4 @@ const getDriversId = async (req, res) => {
   }
 };
 
-module.exports = { getDriversId};
+module.exports = { getDriversId };

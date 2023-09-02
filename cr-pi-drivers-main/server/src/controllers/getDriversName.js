@@ -30,7 +30,17 @@ const getDriversName = async (req, res) => {
       driver.name?.surname?.toLowerCase()?.includes(queryWord) // Busca en el campo "surname"
     );
 
-    const matchingDrivers = [...matchingDriversFromAPI, ...matchingDriversFromDB];
+    // Mapear los conductores para incluir solo los campos deseados
+    const matchingDrivers = matchingDriversFromAPI.concat(matchingDriversFromDB).map(driver => ({
+      name: driver.name?.forename + ' ' + driver.name?.surname,
+      firstName: driver.firstName,
+      lastName: driver.lastName,
+      description: driver.description,
+      image: driver.image,
+      nationality: driver.nationality,
+      birthDate: driver.birthDate,
+      teams: driver.teams,
+    }));
 
     if (matchingDrivers.length > 0) {
       res.json(matchingDrivers);

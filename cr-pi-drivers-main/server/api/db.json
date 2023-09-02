@@ -9594,6 +9594,19 @@
     },
     {
       "id": 510
+    },
+    {
+      "name": "Nombre",
+      "firstName": "Primer Nombre",
+      "lastName": "Apellido",
+      "description": "Descripción",
+      "image": "URL de la imagen",
+      "nationality": "Nacionalidad",
+      "birthDate": "2000/10/10",
+      "teams": [
+        "Ferrari"
+      ],
+      "id": 511
     }
   ]
 }

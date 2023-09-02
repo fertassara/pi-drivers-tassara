@@ -31,10 +31,17 @@ const getTeamsAndSaveToDatabase = async (req, res) => {
       await Team.bulkCreate(validTeams.map(name => ({ name })));
 
       console.log('Equipos guardados en la base de datos.');
+
+      // Enviar una respuesta con status 200
+      res.status(200).json({ message: 'Equipos guardados en la base de datos.' });
     } else {
       console.log('La tabla de equipos ya contiene datos.');
+
+      // Enviar una respuesta con status 200
+      res.status(200).json({ message: 'La tabla de equipos ya contiene datos.' });
     }
   } catch (error) {
+    // Enviar una respuesta con status 400 en caso de error
     res.status(400).json({ message: 'An error occurred while creating driver' });
     console.error(error);
   }

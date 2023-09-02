@@ -7,9 +7,9 @@ module.exports = (sequelize) => {  //crea las tablas de la base de datos en pgAd
   // defino el modelo
   sequelize.define('Driver', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       primaryKey: true,
-      autoIncrement: true,
+      defaultValue:DataTypes.UUIDV4,
     },
     name: {
       type: DataTypes.STRING,
@@ -22,23 +22,23 @@ module.exports = (sequelize) => {  //crea las tablas de la base de datos en pgAd
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     description: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     nationality: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     birthDate: {
       type: DataTypes.DATE,
-      allowNull: true,
+      allowNull: false,
     },
   },
   {
