@@ -1,20 +1,22 @@
-const app = require("./src/server");
+// const axios = require("axios");
+const server = require("./src/server");
 const { conn } = require('./src/db.js');
+const { getTeams } = require("./src/controllers/teamsController");
+const PORT = 3001;
 
-
-
-
-conn.sync({ force: true }) // Esto sincronizará y creará las tablas en la base de datos
-.then(() => {
-  app.listen(3001, () => {
-    console.log('Server is running on port 3001');
-  });
+conn.sync({ alter: true  }).then( async () => {
+  await getTeams();
+  server.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 })
-.catch((error) => {
-  console.error('Error syncing database:', error);
-});
-// conn.sync({ force: true }).then(() => {
-// server.listen(PORT, () => {
+}).catch(error => console.error(error))
+
+// -----------------------------------------------------
+
+// conn.sync({ force: true  }).then( () => {
+//   server.listen(PORT, () => {
 //   console.log(`Server listening on port ${PORT}`);
 // })
 // }).catch(error => console.error(error))
+
+// -----------------------------------------------------

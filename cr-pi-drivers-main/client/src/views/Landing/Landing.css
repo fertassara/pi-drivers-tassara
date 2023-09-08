@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+.Landing {
+    background-image: url(../../assets/aspera-textura-collage-comprobado.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.landingButton {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #b10707;
+    color: white;
+    font-size: 25px;
+    padding: 1em 2em;
+    letter-spacing: 0.06em;
+    border: none;
+    border-radius: 0.6em;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.landingButton:hover {
+    background-color: #ec3d3d;
+    box-shadow: 0 0 10px rgba(253, 27, 27, 0.4), 0 0 9px 3px rgba(253, 27, 27, 0.1);
+}

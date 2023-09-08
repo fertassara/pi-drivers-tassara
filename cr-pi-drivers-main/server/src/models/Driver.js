@@ -1,48 +1,45 @@
 const { DataTypes } = require('sequelize');
-const path = require('path');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
-
-module.exports = (sequelize) => {  //crea las tablas de la base de datos en pgAdmin
+module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Driver', {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue:DataTypes.UUIDV4,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: true,  //lO PUSE EN TRUE PARA PODER CREAR EN LA BASE DE DATOS
+    id:{
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue:DataTypes.UUIDV4,
+      },
     
-    },
-    firstName: {
+    forename: {
       type: DataTypes.STRING,
+      unique: false,
       allowNull: true,
     },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    surname: {
+        type: DataTypes.STRING,
+        unique: false,
+        allowNull: true,
     },
     description: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,  
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     nationality: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
-    birthDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
+    dob: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
   },
   {
     timestamps: false,
-  });
+  }
+  );
+}; 
 
-};

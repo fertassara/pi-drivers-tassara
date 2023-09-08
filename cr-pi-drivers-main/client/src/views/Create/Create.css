@@ -1,0 +1,75 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilos para el formulario */
+.form-container {
+    max-width: 600px; /* Ajusta el ancho máximo según tus preferencias */
+    margin: 0 auto; /* Centra el formulario horizontalmente */
+    padding: 20px;
+    background-color: #fff; /* Cambia el fondo según tus preferencias */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega sombra según tus preferencias */
+}
+
+
+h1 {
+    color: #dc0000;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilos para el formulario */
+.form-container {
+    width: 100%; /* Ajusta el ancho máximo según tus preferencias */
+    max-width: 600px; /* Ancho máximo del formulario */
+    padding: 20px;
+    background-color: #fff; /* Cambia el fondo según tus preferencias */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega sombra según tus preferencias */
+    margin: 0 auto; /* Centra el formulario horizontalmente */
+}
+
+h1 {
+    color: #dc0000;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Resto de tus estilos CSS */

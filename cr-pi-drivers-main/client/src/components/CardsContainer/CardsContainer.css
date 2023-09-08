@@ -1,0 +1,14 @@
+.cardsContainer {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    border-radius: 15px;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    min-height: 50vh; /* Altura mínima del contenedor para centrarlo en la página */
+    flex-wrap: wrap;
+    padding: 20px; /* Añadir espacio adicional alrededor del contenedor */
+    background-color: #f1f1f1; /* Color de fondo gris claro (opcional) */
+  }
+  

@@ -9590,12 +9590,6 @@
       "description": "Lance Graf von Haugwitz-Hardenberg-Reventlow,[1] (February 24, 1936 – July 24, 1972) was a British-born American entrepreneur, racing driver and heir to the Woolworth fortune. Reventlow was the only child of heiress Barbara Hutton and her second husband, Count Kurt Haugwitz-Hardenberg-Reventlow. His stepfathers included actor Cary Grant and Prince Igor Troubetzkoy."
     },
     {
-      "id": 509
-    },
-    {
-      "id": 510
-    },
-    {
       "name": "Nombre",
       "firstName": "Primer Nombre",
       "lastName": "Apellido",
@@ -9606,7 +9600,7 @@
       "teams": [
         "Ferrari"
       ],
-      "id": 511
+      "id": 509
     }
   ]
 }

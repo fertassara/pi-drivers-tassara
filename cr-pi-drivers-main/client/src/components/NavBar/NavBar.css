@@ -1,0 +1,48 @@
+/* NavBar.css */
+
+/* Estilos para el contenedor principal de la barra de navegación */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000; /* Color de fondo negro */
+    padding: 10px;
+    color: white;
+  }
+  
+  /* Estilos para los elementos individuales dentro de la barra de navegación */
+  .navbar-item {
+    margin-right: 20px; /* Mayor espacio entre elementos */
+  }
+  
+  /* Estilos para la barra de búsqueda */
+  .search-bar {
+    width: 250px; /* Ancho ligeramente más grande */
+    padding: 8px; /* Mayor espacio alrededor del campo de búsqueda */
+    border: 2px solid #ff2800; /* Borde rojo alrededor del campo de búsqueda */
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000; /* Texto negro */
+    font-weight: bold; /* Texto en negrita */
+  }
+  
+  /* Estilos para otros componentes, como Order, Origin y FilterByTeam */
+  /* Puedes agregar estilos específicos para estos componentes aquí */
+  
+  /* Estilos para el botón "Search" en SearchBar */
+  .search-button {
+    background-color: #ff2800; /* Rojo brillante */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Cambio de color cuando se pasa el ratón sobre el botón "Search" */
+  .search-button:hover {
+    background-color: #ff5b00; /* Rojo más oscuro al pasar el ratón */
+  }
+  

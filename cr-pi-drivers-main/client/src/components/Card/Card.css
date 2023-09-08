@@ -1,0 +1,48 @@
+/* Card.css */
+body {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: Arial, sans-serif; /* Puedes cambiar la fuente según tus preferencias */
+    color:#a00f0f; /* Color de texto blanco */
+}
+
+.Card {
+    border: 1px solid black;
+    width: 250px;
+    height: 400px;
+    border-radius: 10px;
+    margin: 0 auto;
+    background-color: #000; /* Fondo negro */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    color:#a00f0f; /* Texto en blanco */
+}
+
+.Card h1 {
+    margin: 10px 0; /* Espacio alrededor del título */
+    font-size: 24px; /* Tamaño de la fuente aumentado */
+    color:#a00f0f;
+}
+
+.Card p {
+    margin-top: 10px; /* Espacio entre el título y el párrafo */
+    font-size: 18px; /* Tamaño de la fuente aumentado */
+    color:#fff;
+    font: bolder;
+}
+
+.Card img {
+    max-width: 100%;
+    max-height: 250px; /* Aumentamos la altura máxima de la imagen */
+    object-fit: cover; /* Escalar y recortar la imagen para ajustarse */
+    border-radius: 5px; /* Un ligero redondeo para la imagen */
+}
