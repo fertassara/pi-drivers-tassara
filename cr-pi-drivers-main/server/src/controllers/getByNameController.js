@@ -1,40 +1,59 @@
-const axios = require("axios");
-require('dotenv').config();
-const { API_URL, DEFAULT_IMAGE } = process.env;
-const { Driver, Team } = require('../db.js').conn.models;
-const { getDrivers, getAPIdrivers, getDBdrivers } = require("./getDriversController.js");
 
-const getByName = async (nombreOriginal) => {
+const axios = require('axios')
+const { Driver } = require('../db')
+const { Op } = require("sequelize");
 
-    if (!nombreOriginal) {
-        throw new Error ('Ingresa un nombre.');
-    };
-    const apiDrivers = await getAPIdrivers();
 
-    const nombreConFormato = nombreOriginal.charAt(0).toUpperCase() + nombreOriginal.slice(1).toLowerCase();
-    console.log(`Nombre obtenido ${nombreOriginal} convertido a ${nombreConFormato}`);
+//  PETICION A LA BASE DE DATOS  LOS 15 
+const getByName = async (name) => {
 
-    const dbConductorEncontrado = await Driver.findAll({
-        where: {
-            forename: nombreConFormato,
-        },
-        include: {
-            model: Team,
-            attributes: ["name"],
-            through: {
-              attributes: [],
-            },
-         },
-    });
+   const nombresConverido= name.toUpperCase().charAt(0)+name.slice(1).toLowerCase();
+   
+   const buscadorDeName = await Driver.findAll({
+      where: {
+         forename: {
+            [Op.iLike]: `%${name}%`
+         }
+      },
+      limit: 15
+   })
+   const buscadorNameDb = buscadorDeName?.map(driver => driver.dataValues)
+   console.log(buscadorNameDb)
 
-    const apiConductoresEncontrados = apiDrivers.filter((conductor) => conductor.name.forename == nombreConFormato);
+//http://localhost:3001/drivers/search?name=lucas
+   const URL = `http://localhost:5000/drivers?name.forename=${nombresConverido}`
+   const data = (await axios.get(`${URL}`)).data
+  
+   if(data.length==0 && buscadorNameDb.length==0) throw Error (`el nombre no existe ${nombresConverido}`)
+   
+   const newData = data.map((elem) => ({
+      id: elem.id,
+      forename: elem.name.forename,
+      surename: elem.name.surname,
+      description: elem.description,
+      image: elem.image.url,
+      nationality: elem.nationality,
+      dob: elem.dob,
+      teams: elem.teams,
+      created: false,
+      
+   }))
+   
+  
+   const filtrado = newData.filter((driver) => driver.forename.toLowerCase() === name.toLowerCase())
+     
 
-    const conductoresEncontrados = dbConductorEncontrado.concat(apiConductoresEncontrados);
-    if (!conductoresEncontrados.length){
-        throw new Error (`El conductor ${nombreConFormato} no se encuentra.`);
-    } else{
-        return conductoresEncontrados;
-    };
-};
+   const completado = 15 - buscadorDeName.length
+   const list15 = filtrado.slice(0,completado)
 
-module.exports = { getByName };
+   return [...buscadorNameDb,...list15]
+
+}
+
+module.exports = { getByName }
+
+
+
+
+
+// 

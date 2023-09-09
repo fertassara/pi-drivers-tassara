@@ -13,10 +13,10 @@ const rootReduccer = (state = initialState, action) => {
         case GET_DRIVERS:
             return {...state, drivers: action.payload, driversName: action.payload, driversTeam: action.payload};
 
-        case SEARCH_DRIVER_BY_NAME:
-            const filteredNames = state.driversName.filter((driver) => 
-                `${driver.name} ${driver.surname}`.toLowerCase().includes(action.payload.toLowerCase()));
-            return {...state, drivers: filteredNames};
+            case SEARCH_DRIVER_BY_NAME:
+                // const filteredNames = state.driversName.filter((driver) => 
+                //     `${driver.name} ${driver.surname}`.toLowerCase().includes(action.payload));
+                return {...state, drivers: action.payload};
 
         case SORT_DRIVERS:
             const { order, direction } = action.payload;

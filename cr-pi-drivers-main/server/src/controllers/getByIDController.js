@@ -4,7 +4,7 @@ const { API_URL, DEFAULT_IMAGE } = process.env; // OBTENCIÓN DE VARIABLES DE EN
 const { Driver, Team } = require('../db.js'); // IMPORTACIÓN DE MODELOS DE BASE DE DATOS
 
 const getByID = async (driverID) => {
-    IDFoundDriver = []; // INICIALIZACIÓN DE UN ARRAY PARA ALMACENAR LOS CONDUCTORES ENCONTRADOS
+    let IDFoundDriver = []; // INICIALIZACIÓN DE UN ARRAY PARA ALMACENAR LOS CONDUCTORES ENCONTRADOS
 
     if (driverID.length > 3) { // VERIFICACIÓN DE LONGITUD DEL ID DEL CONDUCTOR
         console.log("Executing search on database."); // MENSAJE DE CONSOLA INDICANDO LA BÚSQUEDA EN LA BASE DE DATOS
@@ -20,9 +20,8 @@ const getByID = async (driverID) => {
                 },
             },
         });
-        IDFoundDriver.push(DBdriver); // AGREGAR EL CONDUCTOR ENCONTRADO AL ARRAY
+        IDFoundDriver.push(DBdriver.dataValues); // AGREGAR EL CONDUCTOR ENCONTRADO AL ARRAY
     };
-
     if (driverID.length < 4) { // VERIFICACIÓN DE LONGITUD DEL ID DEL CONDUCTOR
         console.log("Executing search on API.") // MENSAJE DE CONSOLA INDICANDO LA BÚSQUEDA EN LA API
         const urlRequest = await axios(`${API_URL}/${driverID}`); // PETICIÓN HTTP A LA API CON EL ID DEL CONDUCTOR

@@ -14,7 +14,7 @@ const Detail = () => {
       .get(`http://localhost:3001/drivers/${id}`)
       .then((response) => {
         const data = response.data;
-        if (data.name) {
+        if (data.id) {
           setDriver(data);
         } else {
           setError('No hay conductor con ese nombre');
@@ -54,7 +54,7 @@ const Detail = () => {
           } ${driver.name && driver.name.surname}`}
         />
         <ul>
-          <li>Nombre: {driver.name && `${driver.name.forename} ${driver.name.surname}`}</li>
+          <li>Nombre: {driver.name ? `${driver.name.forename} ${driver.name.surname}`:`${driver.forename} ${driver.surname}`}</li>
           <li>Fecha de Nacimiento: {driver.dob}</li>
           <li>Nacionalidad: {driver.nationality}</li>
           <li>Equipos: {driver.teams}</li>

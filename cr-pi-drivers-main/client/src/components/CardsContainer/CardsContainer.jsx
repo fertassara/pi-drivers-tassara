@@ -16,8 +16,8 @@ const CardsContainer = () => {
 
     return (
         <div className='cardsContainer'>
-            {filteredDrivers.map(({ id, name, surname, image, dob, teams, Teams }) => {
-                const driverName = name && typeof name === 'object' ? `${name.forename} ${name.surname}` : name;
+            {filteredDrivers.map(({ id, name, forename, surname, image, dob, teams, Teams }) => {
+                const driverName = name && typeof name === 'object' ? `${name.forename} ${name.surname}` :  `${forename} ${surname}`;
                 
                 return (
                     <Card

@@ -31,7 +31,7 @@ const Create = () => {
     }, [opcionesEscuderias, dispatch]);
 
     const [driverData, setDriverData] = useState({
-        name: '',
+        forename: '',
         surname: '',
         nationality: '',
         image: null,
@@ -41,7 +41,7 @@ const Create = () => {
     });
 
     const [errors, setErrors] = useState({
-        name: '',
+        forename: '',
         surname: '',
         nationality: '',
         image: '',
@@ -54,7 +54,7 @@ const Create = () => {
         event.preventDefault();
 
         // Realiza las validaciones
-        const nameError = validateName(driverData.name);
+        const nameError = validateName(driverData.forename);
         const surnameError = validateSurname(driverData.surname);
         const nationalityError = validateNationality(driverData.nationality);
         const dobError = validateDob(driverData.dob);
@@ -63,7 +63,7 @@ const Create = () => {
 
         // Actualiza los errores
         setErrors({
-            name: nameError,
+            forename: nameError,
             surname: surnameError,
             nationality: nationalityError,
             dob: dobError,
@@ -75,7 +75,7 @@ const Create = () => {
         if (!nameError && !surnameError && !nationalityError && !dobError && !descriptionError && !teamsError) {
             dispatch(createDriver(driverData));
             setDriverData({
-                name: '',
+                forename: '',
                 surname: '',
                 nationality: '',
                 image: null,
@@ -115,12 +115,12 @@ const Create = () => {
                         <label>Nombre:</label>
                         <input
                             type="text"
-                            id="name"
-                            name="name"
-                            value={driverData.name}
+                            id="forename"
+                            name="forename"
+                            value={driverData.forename}
                             onChange={handleInputChange}
                         />
-                        {errors.name && <div className="error">{errors.name}</div>}
+                        {errors.forename && <div className="error">{errors.forename}</div>}
 
                         <label>Apellido:</label>
                         <input
@@ -144,7 +144,7 @@ const Create = () => {
 
                         <label>Imagen:</label>
                         <input
-                            type="file"
+                            type="filehttps://imagenes.elpais.com/resizer/RTU--mDf2a2jeteyBFjrpyI29CY=/1200x0/filters:focal(2052x1240:2062x1250)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/PKRZJN2XG66V7BTAQC3EDZCBFI.jpg"
                             id="image"
                             name="image"
                             onChange={handleImageChange}

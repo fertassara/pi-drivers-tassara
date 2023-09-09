@@ -8,17 +8,17 @@ const createDriver = async (driverData) => { // FUNCIÓN PARA CREAR UN CONDUCTOR
             throw new Error("'teams' should be an array"); // LANZAR UN ERROR SI 'teams' NO ES UN ARREGLO
         }
 
-        const { name, forename, surname, description, image, nationality, dob, teams } = driverData; // DESESTRUCTURACIÓN DE driverData
+        const {  forename, surname, description, image, nationality, dob, teams } = driverData; // DESESTRUCTURACIÓN DE driverData
 
         // Proporciona una URL de imagen por defecto si no se proporciona una imagen específica
-        const defaultImage = 'URL_de_la_imagen_por_defecto'; // DEFINICIÓN DE LA IMAGEN POR DEFECTO
+        const defaultImage = 'https://imagenes.elpais.com/resizer/RTU--mDf2a2jeteyBFjrpyI29CY=/1200x0/filters:focal(2052x1240:2062x1250)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/PKRZJN2XG66V7BTAQC3EDZCBFI.jpg'; // DEFINICIÓN DE LA IMAGEN POR DEFECTO
 
         // Utiliza la imagen proporcionada o la imagen por defecto
         const driverImage = image || defaultImage; // ASIGNACIÓN DE LA IMAGEN PROPORCIONADA O POR DEFECTO
 
         // Crear un nuevo conductor en la base de datos
         const newDriver = await Driver.create({ // CREACIÓN DE UN NUEVO CONDUCTOR EN LA BASE DE DATOS
-            name,
+            
             forename,
             surname,
             description,

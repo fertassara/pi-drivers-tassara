@@ -7,7 +7,8 @@ const getByNameHandler = async (req, res)=>{
         const response = await getByName(name);
         res.status(200).json(response)
     } catch (error) {
-        res.status(400).send({ error: error.message })  
+        res.status(400).send({ error: error.message })
+        console.log(error)  
     };
 };
 
