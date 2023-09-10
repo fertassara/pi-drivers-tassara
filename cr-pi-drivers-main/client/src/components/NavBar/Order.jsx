@@ -8,7 +8,7 @@ const Order = () => {
   useEffect(() => {
     setOrder("name.forename");
     setDirection("asc");
-  }, []);
+  }, []); 
 
   const [order, setOrder] = useState("name.forename");
   const [direction, setDirection] = useState("asc");
@@ -25,8 +25,8 @@ const Order = () => {
       <select onChange={handleSortChange} value={`${order}:${direction}`}>
         <option value="name.forename:asc">Nombre (A-Z)</option>
         <option value="name.forename:desc">Nombre (Z-A)</option>
-        <option value="birthdate:asc">Edades Ascendentes</option>
-        <option value="birthdate:desc">Edades Descendentes</option>
+        <option value="dob:asc">Edades Ascendentes</option>
+        <option value="dob:desc">Edades Descendentes</option>
       </select>
     </div>
   );

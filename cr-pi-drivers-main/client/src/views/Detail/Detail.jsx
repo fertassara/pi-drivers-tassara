@@ -29,7 +29,7 @@ const Detail = () => {
   }, [id]);
 
   if (loading) {
-    return <p>Cargando...</p>;
+    return <p>Cargando, aguarda por favor...</p>;
   }
 
   if (error) {
@@ -47,12 +47,8 @@ const Detail = () => {
     <div className="container">
       <div className="card">
         <h1>Detalle del Conductor</h1>
-        <img
-          src={driver.image && driver.image.url}
-          alt={`Imagen de ${
-            driver.name && driver.name.forename
-          } ${driver.name && driver.name.surname}`}
-        />
+        <img src={driver.image} />
+
         <ul>
           <li>Nombre: {driver.name ? `${driver.name.forename} ${driver.name.surname}`:`${driver.forename} ${driver.surname}`}</li>
           <li>Fecha de Nacimiento: {driver.dob}</li>

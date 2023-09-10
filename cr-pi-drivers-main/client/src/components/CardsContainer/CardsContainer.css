@@ -1,14 +1,58 @@
+/* Estilos CSS para mostrar 3x3 */
 .cardsContainer {
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-    border-radius: 15px;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    min-height: 50vh; /* Altura mínima del contenedor para centrarlo en la página */
-    flex-wrap: wrap;
-    padding: 20px; /* Añadir espacio adicional alrededor del contenedor */
-    background-color: #f1f1f1; /* Color de fondo gris claro (opcional) */
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  gap: 20px; /* Espacio entre filas y columnas */
+  max-width: 900px; /* Ajusta el ancho máximo según tus necesidades */
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  text-align: center; /* Alinea el contenido al centro */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+}
+
+/* Estilos para la paginación */
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #701a1a;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.pagination button:hover {
+  background-color: #000000;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
   
