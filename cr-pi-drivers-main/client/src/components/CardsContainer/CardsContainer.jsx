@@ -64,6 +64,7 @@ const CardsContainer = () => {
                 >
                     Previous
                 </button>
+                <h1>{currentPage}/{Math.ceil(filteredDrivers.length / 9)}</h1>
                 <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={endIndex >= filteredDrivers.length}

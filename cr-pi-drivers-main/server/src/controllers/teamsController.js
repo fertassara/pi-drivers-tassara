@@ -1,47 +1,46 @@
-const { Team } = require('../db.js'); // IMPORTACIÓN DEL MODELO Team DESDE UN ARCHIVO '../db'
-const { getAPIdrivers } = require("./getDriversController.js"); // IMPORTACIÓN DE LA FUNCIÓN getAPIdrivers DESDE UN ARCHIVO './getDriversController'
-require("dotenv").config(); // CONFIGURACIÓN DE VARIABLES DE ENTORNO DESDE EL ARCHIVO .env
+const { Team } = require('../db.js');
+const { getAPIdrivers } = require("./getDriversController.js");
+require("dotenv").config();
 
-const getTeams = async () => { // FUNCIÓN PARA OBTENER EQUIPOS
-    const teamNames = []; // ARREGLO PARA ALMACENAR NOMBRES DE EQUIPOS
+const getTeams = async () => {
+    const teamNames = [];
 
-    const dbTeams = await Team.findAll(); // BÚSQUEDA DE EQUIPOS EN LA BASE DE DATOS
-    const apiDrivers = await getAPIdrivers(); // OBTENCIÓN DE DATOS DE API DE DRIVERS
+    const dbTeams = await Team.findAll();
 
-    if (!dbTeams.length) { // COMPROBACIÓN SI NO HAY EQUIPOS EN LA BASE DE DATOS
+    if (!dbTeams.length) {
+        const apiDrivers = await getAPIdrivers();
 
-        apiDrivers.forEach((driver) => { // RECORRIDO DE LOS DATOS DE LOS DRIVERS DE LA API
-            if (driver.teams) { // COMPROBACIÓN SI EL DRIVER TIENE EQUIPOS ASOCIADOS
-                const teams = driver.teams.split(','); // DIVISIÓN DE LOS EQUIPOS SI HAY MÁS DE UNO EN LA CADENA
+        apiDrivers.forEach((driver) => {
+            if (typeof driver.teams === 'string') { // Comprobación de que driver.teams es una cadena
+                const teams = driver.teams.split(',');
                 teams.forEach((team) => {
-                    const trimmedTeam = team.trim(); // ELIMINACIÓN DE ESPACIOS ALREDEDOR DEL NOMBRE DEL EQUIPO
+                    const trimmedTeam = team.trim();
                     if (trimmedTeam) {
-                        teamNames.push(trimmedTeam); // AGREGACIÓN DE NOMBRES DE EQUIPOS INDIVIDUALES SIN ESPACIOS
+                        teamNames.push(trimmedTeam);
                     }
-            
                 });
             }
         });
 
-        const uniqueTeams = [...new Set(teamNames)]; // ELIMINACIÓN DE EQUIPOS REPETIDOS DEL ARREGLO ANTERIOR Y GUARDADO DE LOS ÚNICOS EN UN NUEVO ARREGLO
+        const uniqueTeams = [...new Set(teamNames)];
 
-        const addTeams = uniqueTeams.map((team) => ({ // MAPEO DE EQUIPOS ÚNICOS PARA CREACIÓN EN LA BASE DE DATOS
-            name: team, // ASIGNACIÓN DEL NOMBRE DEL EQUIPO
+        const addTeams = uniqueTeams.map((team) => ({
+            name: team,
         }));
         
         try {
-            const createdTeams = await Team.bulkCreate(addTeams, { // CREACIÓN DE EQUIPOS EN LA BASE DE DATOS
-                ignoreDuplicates: true, // IGNORAR DUPLICADOS SI YA EXISTEN EQUIPOS CON EL MISMO NOMBRE
+            const createdTeams = await Team.bulkCreate(addTeams, {
+                ignoreDuplicates: true,
             });
-            console.log('The teams have been successfully added to the database.'); // MENSAJE DE ÉXITO
-            
+            console.log('Los equipos se han agregado correctamente a la base de datos.');
         } catch (error) {
-
-            console.error('Error creating teams:', error); // MANEJO DE ERRORES SI OCURRE UN PROBLEMA EN LA CREACIÓN DE EQUIPOS
+            console.error('Error al crear los equipos:', error);
         };
-        return(uniqueTeams);
+        return uniqueTeams;
 
-    } else return (dbTeams)
+    } else {
+        return dbTeams;
+    }
 };
 
 module.exports = { getTeams };

@@ -8,6 +8,8 @@ const Detail = () => {
   const [driver, setDriver] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+ 
+  
 
   useEffect(() => {
     axios
@@ -53,7 +55,8 @@ const Detail = () => {
           <li>Nombre: {driver.name ? `${driver.name.forename} ${driver.name.surname}`:`${driver.forename} ${driver.surname}`}</li>
           <li>Fecha de Nacimiento: {driver.dob}</li>
           <li>Nacionalidad: {driver.nationality}</li>
-          <li>Equipos: {driver.teams}</li>
+          <li>Equipos: {driver.teams? driver.teams : driver.Teams.map(team => team.name).join(", ")}</li> 
+          {/* team de db array de obj .map los separa y me quedo con la prop name y el join los junta en un string */}
           <li>Descripción: {driver.description}</li>
           <li>
             <a href={driver.url} target="_blank" rel="noopener noreferrer">

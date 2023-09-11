@@ -2,6 +2,7 @@ const { Op } = require('sequelize'); // IMPORTACIÓN DEL OPERADOR 'Op' DE SEQUEL
 const { Driver, Team } = require('../db'); // IMPORTACIÓN DE LOS MODELOS Driver Y Team DESDE UN ARCHIVO '../db'
 
 const createDriver = async (driverData) => { // FUNCIÓN PARA CREAR UN CONDUCTOR
+    console.log(driverData)
     try {
         // Verificar si 'teams' está presente y es un arreglo
         if (!Array.isArray(driverData.teams)) { // VERIFICACIÓN DE SI 'teams' ES UN ARREGLO
@@ -28,13 +29,23 @@ const createDriver = async (driverData) => { // FUNCIÓN PARA CREAR UN CONDUCTOR
         });
 
         // Buscar equipos existentes en la base de datos
-        const existingTeams = await Team.findAll({ // BÚSQUEDA DE EQUIPOS EXISTENTES EN LA BASE DE DATOS
+      // Definir un array para almacenar los equipos que se encuentran en la base de datos
+        const existingTeams = [];
+
+        // Recorrer los equipos seleccionados en driverData.teams
+        for (const teamName of driverData.teams) {
+        // Buscar un equipo con el nombre actual en la base de datos
+        const team = await Team.findOne({
             where: {
-                name: {
-                    [Op.in]: teams, // BUSCAR EQUIPOS CON NOMBRES EN LA LISTA 'teams'
-                },
+            name: teamName,
             },
         });
+
+        // Si se encuentra un equipo, agrégalo al array existingTeams
+        if (team) {
+            existingTeams.push(team);
+        }
+        }
 
         // Asociar los equipos existentes al nuevo conductor
         await newDriver.addTeams(existingTeams); // ASOCIAR LOS EQUIPOS ENCONTRADOS AL NUEVO CONDUCTOR

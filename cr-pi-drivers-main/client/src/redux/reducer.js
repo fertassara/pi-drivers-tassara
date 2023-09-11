@@ -11,6 +11,7 @@ import {
 } from "./actions";
 
 const initialState = {
+    ordenados: [],
     drivers: [],
     driversName: [],
     driversTeam: [],
@@ -35,15 +36,35 @@ const rootReducer = (state = initialState, action) => {
         case SORT_DRIVERS:
             const { order, direction } = action.payload;
             const ordenados = [...state.drivers];
-            ordenados.sort((a, b) => {
-                return order === "name"
-                    ? direction === "asc"
-                        ? a.name.localeCompare(b.name)
-                        : b.name.localeCompare(a.name)
-                    : direction === "asc"
-                    ? new Date(b.dob) - new Date(a.dob)
-                    : new Date(a.dob) - new Date(b.dob);
-            });
+
+            console.log(order)
+
+            if (order === "name.forename") {
+                ordenados.sort((a, b) => {
+                    const nameA = a.name && a.name.forename ? a.name.forename.toUpperCase() : "";
+                    const nameB = b.name && b.name.forename ? b.name.forename.toUpperCase() : "";
+            
+                    if (direction === "asc") {
+                        return nameA.localeCompare(nameB);
+                    } else {
+                        return nameB.localeCompare(nameA);
+                    }
+                });
+            
+            
+            } else if (order === "dob") {
+                ordenados.sort((a, b) => {
+                    const dobA = new Date(a.dob);
+                    const dobB = new Date(b.dob);
+
+                    if (direction === "asc") {
+                        return dobA - dobB;
+                    } else {
+                        return dobB - dobA;
+                    }
+                });
+            }
+
             return { ...state, drivers: ordenados };
 
         case GET_TEAMS:

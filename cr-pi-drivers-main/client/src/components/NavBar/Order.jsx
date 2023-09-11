@@ -6,11 +6,11 @@ const Order = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setOrder("name.forename");
+    setOrder("Select Order");
     setDirection("asc");
   }, []); 
 
-  const [order, setOrder] = useState("name.forename");
+  const [order, setOrder] = useState("Select Order");
   const [direction, setDirection] = useState("asc");
 
   const handleSortChange = (e) => {
@@ -20,10 +20,14 @@ const Order = () => {
     dispatch(sortDrivers(newOrder, newDirection));
   };
 
+  
+
   return (
     <div>
       <select onChange={handleSortChange} value={`${order}:${direction}`}>
-        <option value="name.forename:asc">Nombre (A-Z)</option>
+      <option value="Select Order">Select Order</option>
+
+       <option value="name.forename:asc">Nombre (A-Z)</option>
         <option value="name.forename:desc">Nombre (Z-A)</option>
         <option value="dob:asc">Edades Ascendentes</option>
         <option value="dob:desc">Edades Descendentes</option>

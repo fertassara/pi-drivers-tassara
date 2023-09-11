@@ -1,5 +1,5 @@
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
-import NavBar from '../../components/NavBar/NavBar'
+import FilterAndOrder from '../../components/NavBar/FilterAndOrder'
 import { getDrivers } from "../../redux/actions";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -18,7 +18,7 @@ const Home = () => {
 
     return (
         <div>
-            <NavBar />
+            <FilterAndOrder />
             <CardsContainer />
         </div>
     );

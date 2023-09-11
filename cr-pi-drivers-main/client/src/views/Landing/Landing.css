@@ -22,13 +22,13 @@
     padding: 1em 2em;
     letter-spacing: 0.06em;
     border: none;
-    border-radius: 0.6em;
+   
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .landingButton:hover {
-    background-color: #ec3d3d;
+    background-color: #070606;
     box-shadow: 0 0 10px rgba(253, 27, 27, 0.4), 0 0 9px 3px rgba(253, 27, 27, 0.1);
 }

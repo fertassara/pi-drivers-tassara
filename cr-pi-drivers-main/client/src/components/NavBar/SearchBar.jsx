@@ -29,7 +29,7 @@ const SearchBar = () => {
             <button onClick={handleSubmit}>Submit</button>
 
             <button onClick={mostrarTodos}>Mostrar Todos</button>
-            <Link to ={'/Create'}><button>Create</button> </Link>
+            
         </div>
     )
 }

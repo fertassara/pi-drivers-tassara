@@ -38,10 +38,10 @@
 }
 
 .pagination button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  background-color: #701a1a;
+  margin: 0 15px;
+  padding: 10px 10px;
+  border-radius: 3px;
+  background-color: #921111;
   color: white;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;

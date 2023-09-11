@@ -1,18 +1,25 @@
-import SearchBar from "./SearchBar";
-import Order from './Order';
-import Origin from "./Origin";
-import FilterByTeam from "./FilterByTeam";
-import './NavBar.css'; // Importa los estilos CSS
+import React from 'react';
+import { Link } from 'react-router-dom';
+import SearchBar from '../NavBar/SearchBar';
+import { useLocation } from 'react-router-dom';
+import style from './NavBar.css';
 
-const NavBar = () => {
-    return (
-        <div className="navbar-container"> {/* Aplica la clase "navbar-container" */}
-            <SearchBar className="navbar-item" /> {/* Aplica la clase "navbar-item" */}
-            <Order className="navbar-item" /> {/* Aplica la clase "navbar-item" */}
-            <Origin className="navbar-item" /> {/* Aplica la clase "navbar-item" */}
-            <FilterByTeam className="navbar-item" /> {/* Aplica la clase "navbar-item" */}
+
+export default function NavBar (){
+
+    const location = useLocation();
+    return(
+        <div className={style.container}>
+            <Link to={"/Home"}>
+                <button className={style.navButtons}>Home</button>
+            </Link> 
+            <Link to={"/Create"}>
+                <button className={style.navButtons}>Create Driver</button>
+            </Link>
+            <Link to={"/"}>
+                <button className={style.navButtons}>Log Out</button>
+            </Link>
+            {/* {location.pathname === "/Home" && <SearchBar />} */}
         </div>
     );
 };
-
-export default NavBar;

@@ -1,3 +1,4 @@
+//Create.jsx
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createDriver, getTeams } from '../../redux/actions';
@@ -98,14 +99,17 @@ const Create = () => {
 
     const handleTeamsChange = (event) => {
         const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
-        setDriverData({ ...driverData, teams: selectedOptions });
+        setDriverData({ ...driverData, teams:[...driverData.teams, ...selectedOptions] });
+        //setDriverData({ ...driverData, teams: selectedOptions});
+
+        console.log(driverData)
     };
+
+    
 
     return (
         <div className="container">
-            <Link to={'/Home'}>
-                <button>Home</button>
-            </Link>
+           
             <div className="form-container">
                 <h1>Crear Conductor</h1>
                 {loading ? (
@@ -172,8 +176,8 @@ const Create = () => {
 
                         <label>Escuderías:</label>
                         <select id="teams" multiple={true} value={driverData.teams} onChange={handleTeamsChange}>
-                            {opcionesEscuderias && opcionesEscuderias.map((escuderia) => (
-                                <option key={escuderia.id} value={escuderia.id}>
+                            {opcionesEscuderias && opcionesEscuderias?.map((escuderia) => (
+                                <option key={escuderia.id} value={escuderia.name}>
                                     {escuderia.name}
                                 </option>
                             ))}
@@ -182,7 +186,7 @@ const Create = () => {
 
                         <button type="submit">Crear Driver</button>
                     </form>
-                )}
+                )}  
             </div>
         </div>
     );

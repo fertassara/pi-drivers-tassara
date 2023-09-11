@@ -1,3 +1,4 @@
+//utils.jsx
 import { createDriver } from '../../redux/actions';
 import {
     validateName,
@@ -52,7 +53,7 @@ export function handleImageChange(event, driverData, setDriverData) {
     setDriverData({ ...driverData, image: imageFile });
 }
 
-export function handleTeamsChange(event, driverData, setDriverData) {
-    const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
-    setDriverData({ ...driverData, teams: selectedOptions });
-}
+// export function handleTeamsChange(event, driverData, setDriverData) {
+//     const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
+//     setDriverData({ ...driverData, teams: selectedOptions });
+// }
