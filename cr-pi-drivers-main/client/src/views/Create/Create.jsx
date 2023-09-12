@@ -151,6 +151,7 @@ const Create = () => {
                             type="filehttps://imagenes.elpais.com/resizer/RTU--mDf2a2jeteyBFjrpyI29CY=/1200x0/filters:focal(2052x1240:2062x1250)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/PKRZJN2XG66V7BTAQC3EDZCBFI.jpg"
                             id="image"
                             name="image"
+                            placeholder="Ingresa una URL"
                             onChange={handleImageChange}
                         />
                         {errors.image && <div className="error">{errors.image}</div>}
@@ -170,6 +171,7 @@ const Create = () => {
                             id="description"
                             name="description"
                             value={driverData.description}
+                            placeholder="Haz una pequeña reseña del driver."
                             onChange={handleInputChange}
                         ></textarea>
                         {errors.description && <div className="error">{errors.description}</div>}

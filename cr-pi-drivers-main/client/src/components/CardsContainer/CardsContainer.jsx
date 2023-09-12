@@ -1,11 +1,13 @@
-//CardsContainer.jsx
+// Importa React y otros componentes y estilos
 import React from 'react';
 import Card from '../Card/Card';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPage } from '../../redux/actions';
 import './CardsContainer.css';
 
+// Define el componente 'CardsContainer'
 const CardsContainer = () => {
+    // Utiliza el hook 'useSelector' para obtener el estado de Redux
     const drivers = useSelector(state => state.drivers);
     const currentPage = useSelector(state => state.currentPage);
     const cardsPerPage = 9; // Configura el número máximo de cartas por página aquí
@@ -41,9 +43,12 @@ const CardsContainer = () => {
     return (
         <div className='cardsContainer'>
             <div className='cardGrid'>
+                {/* Mapea y muestra las cartas de los conductores visibles */}
                 {visibleDrivers.map(({ id, name, forename, surname, image, dob, teams, Teams }) => {
+                    // Determina el nombre del conductor
                     const driverName = name && typeof name === 'object' ? `${name.forename} ${name.surname}` :  `${forename} ${surname}`;
                     
+                    // Renderiza un componente 'Card' para cada conductor
                     return (
                         <Card
                             key={id}
@@ -57,6 +62,7 @@ const CardsContainer = () => {
                     );
                 })}
             </div>
+            {/* Muestra la paginación */}
             <div className='pagination'>
                 <button
                     onClick={() => handlePageChange(currentPage - 1)}
@@ -64,7 +70,8 @@ const CardsContainer = () => {
                 >
                     Previous
                 </button>
-                <h1>{currentPage}/{Math.ceil(filteredDrivers.length / 9)}</h1>
+                <h1>{currentPage}/{Math.ceil(filteredDrivers.length / 9)}</h1>             {/* muestro pag actual y total */}
+
                 <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={endIndex >= filteredDrivers.length}
@@ -76,4 +83,5 @@ const CardsContainer = () => {
     );
 };
 
+// Exporta el componente 'CardsContainer' para su uso en otros lugares de la aplicación
 export default CardsContainer;

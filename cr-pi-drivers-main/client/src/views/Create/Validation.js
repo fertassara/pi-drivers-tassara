@@ -1,3 +1,5 @@
+//VALIDACION DE FORMULARIOS PARA UQE HAYA UN STRING
+
 export function validateName(name) {
     if (name.trim() === '') {
         return 'El nombre del conductor es obligatorio.';
