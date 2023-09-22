@@ -2,11 +2,11 @@ require("dotenv").config(); // CARGA VARIABLES DE ENTORNO DESDE UN ARCHIVO .env
 const { Sequelize } = require("sequelize"); // IMPORTA LA LIBRERÍA SEQUELIZE
 const fs = require('fs');
 const path = require('path');
-const { DB_USER, DB_PASSWORD, DB_HOST, } = process.env; // OBTIENE LAS VARIABLES DE ENTORNO PARA LA CONEXIÓN A LA BASE DE DATOS
-
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env; // OBTIENE LAS VARIABLES DE ENTORNO PARA LA CONEXIÓN A LA BASE DE DATOS
 // IMPORTA LAS FUNCIONES QUE DEFINEN LOS MODELOS DE DRIVER Y TEAM
 const defineDrivers = require ('./models/Driver');
 const defineTeams = require ('./models/Team');
+
 
 // CREA UNA INSTANCIA DE SEQUELIZE PARA LA CONEXIÓN A LA BASE DE DATOS
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/drivers`, {

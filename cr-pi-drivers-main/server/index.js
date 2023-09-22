@@ -1,8 +1,9 @@
 // const axios = require("axios");
-const server = require("./src/server");
-const { conn } = require('./src/db.js');
+const server = require("../server/src/server.js");
 const { getTeams } = require("./src/controllers/teamsController");
 const PORT = 3001;
+const { conn } = require('./src/db.js');
+
 
 conn.sync({ alter: true  }).then( async () => {
   await getTeams();
